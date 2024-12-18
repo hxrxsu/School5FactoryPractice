@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using School5FactoryPractice.Data;
+using System.Data.Common;
 
 namespace School5FactoryPractice
 {
@@ -30,7 +32,13 @@ namespace School5FactoryPractice
 
             ME_Background.Source = _secBackgroundPath;
             ME_Background.Play();
+
+            Window parentWindow = Window.GetWindow(this);
+
+            parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
+
+        List<string> _currentUsersData;
 
         private void CB_HideOrShow_Checked(object sender, RoutedEventArgs e)
         {
@@ -63,6 +71,71 @@ namespace School5FactoryPractice
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void TB_Pass_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TB_Pass.Text = "";
+        }
+
+        private void TB_Login_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TB_Login.Text = "";
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if(string.IsNullOrEmpty(TB_Login.Text) && string.IsNullOrEmpty(TB_Pass.Text))
+            {
+            }
+            else
+            {
+                try
+                {
+                    using (ApplicationContext db = new ApplicationContext())
+                    {
+                        var _currentUser = db.Users.FirstOrDefault(u => u.Login == TB_Login.Text && u.Password == TB_Pass.Text);
+
+                        //var _usersList = db.Users.ToList();
+
+                        //foreach (var _user in _usersList)
+                        //{
+                        //    _currentUsersData.Add($"{_user.UserId} {_user.Name} {_user.Role}");
+                        //}
+
+
+
+                        if ( _currentUser != null)
+                        {
+                            if (_currentUser.Role == "Учитель")
+                            {
+                                NavigationService.Navigate(new MainTeacherPage());
+
+                                MessageBox.Show("Вы вошли!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else if(_currentUser.Role == "Ученик")
+                            {
+                                NavigationService.Navigate(new MainStudentPage());
+
+                                MessageBox.Show("Вы вошли!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }        
+                            else if(_currentUser.Role == "Администратор")
+                            {
+                                NavigationService.Navigate(new MainAdminPage());
+
+                                MessageBox.Show("Вы вошли!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Неверный логин или пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch(Exception ex) { }
+            }
+
         }
     }
 }

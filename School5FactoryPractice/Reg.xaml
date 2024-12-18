@@ -39,19 +39,14 @@
                     <TextBlock x:Name="TB_Teacher" TextWrapping="Wrap" Text="Учитель" Foreground="White" HorizontalAlignment="Left" FontSize="24" Background="#FF272628" RenderTransformOrigin="0.633,0.559"/>
                     <TextBlock x:Name="TB_Student" TextWrapping="Wrap" Text="Cтудент" Foreground="White" HorizontalAlignment="Left" FontSize="24" Background="#FF272628" RenderTransformOrigin="0.633,0.559" Grid.Column="1" Margin="37,0,0,0" Width="96"/>
                 </Grid>
-                <TextBox x:Name="TB_Pass" Grid.Row="4" TextWrapping="Wrap" Text="Пароль" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Collapsed"/>
-                <TextBox x:Name="TB_Name" Grid.Row="0" TextWrapping="Wrap" Text="ФИО" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Collapsed"/>
-                <TextBox x:Name="TB_FIO" Grid.Row="0" TextWrapping="Wrap" Text="ФИО" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Collapsed"/>
-                <TextBox x:Name="TB_Email" Grid.Row="1" TextWrapping="Wrap" Text="Электронная почта" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Collapsed"/>
-                <TextBox x:Name="TB_PhoneNumber" Grid.Row="2" TextWrapping="Wrap" Text="Номер телефона" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Collapsed"/>
-                <TextBox x:Name="TB_Login"  Grid.Row="3" TextWrapping="Wrap" Text="Логин" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Collapsed"/>
-                <Image x:Name="IE_Teacher" Source="src\\teacher.png" Stretch="Fill" Height="100" Grid.RowSpan="4" Width="100" Grid.Row="1" HorizontalAlignment="Left"/>
-                <Image x:Name="IE_Student" Source="src\\student.png" Stretch="Fill" Height="100" Grid.RowSpan="4" Grid.Row="1" Width="100" HorizontalAlignment="Right"/>
+                <Image x:Name="IE_Teacher" Source="src\teacher.png" Stretch="Fill" Height="100" Grid.RowSpan="4" Width="100" Grid.Row="1" HorizontalAlignment="Left" MouseDown="IE_Teacher_MouseDown"/>
+                <Image x:Name="IE_Student" Source="src\student.png" Stretch="Fill" Height="100" Grid.RowSpan="4" Grid.Row="1" Width="100" HorizontalAlignment="Right" MouseDown="IE_Student_MouseDown"/>
                 <TextBlock x:Name="TB_Choose" TextWrapping="Wrap" Text="Выберите вашу роль" VerticalAlignment="Top" Foreground="White" HorizontalAlignment="Center" FontSize="24" Background="#FF272628" Margin="0,2,0,0"/>
             </Grid>
         </Border>
-        <Button x:Name="BN_Exit" Grid.Column="2" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Width="18" Background="#FF272628" Foreground="White" Click="Button_Click"/>
+        <Button x:Name="BN_Exit" Grid.Column="2" Content="X" VerticalAlignment="Top" Background="#FF272628" Foreground="White" Margin="249,0,0,0" Click="BN_Exit_Click"/>
         <TextBlock Grid.Column="1" TextWrapping="Wrap" Text="ИС школы №5" VerticalAlignment="Top" Foreground="White" HorizontalAlignment="Center" FontSize="24" Background="#FF272628"/>
         <Label x:Name="LL_ToAuth" Grid.Column="1" Content="Уже есть учетная запись?" Grid.Row="2" VerticalAlignment="Top" Foreground="White" HorizontalContentAlignment="Center" MouseDown="Label_MouseDown" Visibility="Collapsed"/>
+        <Button x:Name="BN_Return" Grid.Column="2" Content="&lt;" HorizontalAlignment="Right" VerticalAlignment="Top" Width="18" Background="#FF272628" Foreground="White" Click="Button_Click" Margin="0,0,23,0"/>
     </Grid>
 </Page>

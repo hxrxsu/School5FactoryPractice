@@ -33,11 +33,11 @@
                         <ColumnDefinition Width="131*"/>
                         <ColumnDefinition Width="131*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Войти" Background="#FF272628" Foreground="White"/>
+                    <Button Content="Войти" Background="#FF272628" Foreground="White" Click="Button_Click_2"/>
                     <Button Content="Зарегистрироваться" Background="#FF272628" Foreground="White" Grid.Column="1" Click="Button_Click"/>
                 </Grid>
-                <TextBox x:Name="TB_Pass" Grid.Row="1" TextWrapping="Wrap" Text="Пароль" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center"/>
-                <TextBox x:Name="TB_Login"  Grid.Row="0" TextWrapping="Wrap" Text="Логин" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="TB_Pass" Grid.Row="1" TextWrapping="Wrap" Text="Пароль" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" GotFocus="TB_Pass_GotFocus"/>
+                <TextBox x:Name="TB_Login"  Grid.Row="0" TextWrapping="Wrap" Text="Логин" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" GotFocus="TB_Login_GotFocus"/>
                 <PasswordBox x:Name="PB_Pass" Password="" Visibility="Hidden" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Grid.Row="1"/>
                 <CheckBox x:Name="CB_HideOrShow" Content="Скрыть пароль" Grid.Row="2" Foreground="White" Background="#FF272628" VerticalContentAlignment="Center" Checked="CB_HideOrShow_Checked" Unchecked="CB_HideOrShow_Unchecked"/>
             </Grid>

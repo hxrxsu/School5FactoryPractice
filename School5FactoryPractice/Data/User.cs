@@ -13,7 +13,7 @@ namespace School5FactoryPractice.Data
         public string? Name { get; set; }
         public string? Description {  get; set; }
         public string? UserEventName {  get; set; }
-        public int PhoneNumber { get; set; }
+        public  Int64 PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string? Email { get; set; }
         public string Login {  get; set; }

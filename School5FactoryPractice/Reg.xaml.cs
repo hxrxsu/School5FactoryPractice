@@ -36,14 +36,9 @@ namespace School5FactoryPractice
             var _firstImageStudentPath = "src\\student.png";
             var _secImageStudentPath = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _firstBackgroundPath));
 
-            try
-            {
-                IE_Teacher.Source = new BitmapImage(_secImageTeacherPath);
-                IE_Student.Source = new BitmapImage(new Uri(_secImageStudentPath, UriKind.Relative));
-            }
-            catch (Exception ex) { MessageBox.Show($"{ex}"); }
+            Window parentWindow = Window.GetWindow(this);
 
-            HideObjects();
+            parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private void ME_Background_MediaEnded(object sender, RoutedEventArgs e)
@@ -62,30 +57,22 @@ namespace School5FactoryPractice
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            NavigationService.Navigate(new Auth());
         }
 
-        private void HideObjects()
+        private void IE_Student_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            TB_Email.Visibility = Visibility.Hidden;
-            TB_FIO.Visibility = Visibility.Hidden;
-            TB_Login.Visibility = Visibility.Hidden;
-            TB_Name.Visibility = Visibility.Hidden;
-            TB_Pass.Visibility = Visibility.Hidden;
-            TB_PhoneNumber.Visibility = Visibility.Hidden;
-            BN_Reg.Visibility = Visibility.Hidden;
-            LL_ToAuth.Visibility = Visibility.Hidden;
+            NavigationService.Navigate(new RegStudent());
         }
-        private void UnHideObjects()
+
+        private void IE_Teacher_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            TB_Email.Visibility = Visibility.Visible;
-            TB_FIO.Visibility = Visibility.Visible;
-            TB_Login.Visibility = Visibility.Visible;
-            TB_Name.Visibility = Visibility.Visible;
-            TB_Pass.Visibility = Visibility.Visible;
-            TB_PhoneNumber.Visibility = Visibility.Visible;
-            BN_Reg.Visibility = Visibility.Visible;
-            LL_ToAuth.Visibility = Visibility.Visible;
+            NavigationService.Navigate(new RegTeacher());
+        }
+
+        private void BN_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
