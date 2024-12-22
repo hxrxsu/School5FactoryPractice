@@ -11,11 +11,12 @@ namespace School5FactoryPractice.Data
         public int UserId {  get; set; }
         public string Role {  get; set; }
         public string? Name { get; set; }
-        public string? Description {  get; set; }
-        public string? UserEventName {  get; set; }
+        public int? CurrentClass { get; set; }
         public  Int64 PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string? Email { get; set; }
+        public string? CurrentHomework { get; set; }
+        public DateTime HomeworkRemainingTime { get; set; }
         public string Login {  get; set; }
         public string Password { get; set; }
     }

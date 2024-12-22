@@ -10,15 +10,17 @@
 
     <Grid Background="#FF272628">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="100*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*"/>
-            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <MediaElement x:Name="ME_Background"  Source="src/background.mp4" Stretch="Fill" LoadedBehavior="Manual" UnloadedBehavior="Play" OpacityMask="#FF272628" Grid.ColumnSpan="3" Grid.RowSpan="3" MediaEnded="ME_Background_MediaEnded" />
+        <MediaElement x:Name="ME_Background"  Source="src/background.mp4" Stretch="Fill" LoadedBehavior="Manual" UnloadedBehavior="Play" OpacityMask="#FF272628" Grid.ColumnSpan="3" Grid.RowSpan="4" MediaEnded="ME_Background_MediaEnded"/>
         <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="3" VerticalAlignment="Top" Height="26" Background="#FF272628">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -28,9 +30,43 @@
                 <Label Content="Школа №5 || Главная страница ученика" Foreground="White"/>
                 <Button Grid.Column="1" Content="X" HorizontalAlignment="Left" Margin="373,0,0,0" Width="26" Background="#FF272628" Foreground="White" Click="Button_Click"/>
                 <Button Grid.Column="1" Content="▢" HorizontalAlignment="Left" Margin="347,0,0,0" Width="26" Background="#FF272628" Foreground="White" Click="Button_Click_1"/>
-                <Button Grid.Column="1" Content="—" HorizontalAlignment="Left" Margin="321,0,0,0" Width="26" Background="#FF272628" Foreground="White" Height="24" VerticalAlignment="Top" Click="Button_Click_2"/>
-
+                <Button Grid.Column="1" Content="—" HorizontalAlignment="Left" Margin="321,0,0,0" Width="26" Background="#FF272628" Foreground="White" Click="Button_Click_2"/>
+                <Image  x:Name="IMG_Logout" Source ="/src/logout.png" Stretch="Uniform" Margin="289,1,78,0" Grid.Column="1" MouseDown="IMG_Logout_MouseDown" />
+                <TextBlock x:Name="TB_CurrentUser" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" Foreground="White" RenderTransformOrigin="1.038,0.604" Grid.Column="1"/>
             </Grid>
         </Border>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Row="1" Margin="0,0,25,1" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.25"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.496"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Grid Background="#FF272628">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Image x:Name="IMG_CurrentUserRole" Source ="src/student.png" Stretch="Fill"/>
+                <Button Content="Профиль" Grid.Row="1" Background="#FF272628" Foreground="White" Click="Button_Click_3"/>
+                <Button Content="Оценки" Grid.Row="2" Background="#FF272628" Foreground="White" Click="Button_Click_6"/>
+                <Button Content="Домашнее задание" Grid.Row="3" Background="#FF272628" Foreground="White" Click="Button_Click_5"/>
+                <Button Content="Учебные материалы" Grid.Row="4" Background="#FF272628" Foreground="White" Click="Button_Click_4"/>
+            </Grid>
+        </Border>
+        <Frame x:Name ="StudentFrame" Content="Frame" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Visibility="Collapsed"/>
+        <Label x:Name="Lbl_StudentPick" Content="Выберите режим - Профиль/Оценки/Домашнее задание" Grid.Row="1" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Grid.RowSpan="3" Grid.Column="1">
+            <Label.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="0.131"/>
+                    <GradientStop Color="#00000000" Offset="1"/>
+                </RadialGradientBrush>
+            </Label.Background>
+        </Label>
     </Grid>
 </Page>

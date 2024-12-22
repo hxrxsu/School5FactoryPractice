@@ -38,7 +38,11 @@ namespace School5FactoryPractice
 
             Window parentWindow = Window.GetWindow(this);
 
-            parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            if (parentWindow != null)
+            {
+                parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                parentWindow.Topmost = true;
+            }
         }
 
         private void ME_Background_MediaEnded(object sender, RoutedEventArgs e)

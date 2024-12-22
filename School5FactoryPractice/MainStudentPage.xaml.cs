@@ -1,10 +1,16 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using School5FactoryPractice.Data;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Provider;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -13,6 +19,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace School5FactoryPractice
 {
@@ -21,7 +29,7 @@ namespace School5FactoryPractice
     /// </summary>
     public partial class MainStudentPage : Page
     {
-        public MainStudentPage()
+        public MainStudentPage(List<string> _currentUserData, User _currentUser)
         {
             InitializeComponent();
 
@@ -39,9 +47,28 @@ namespace School5FactoryPractice
 
             Window parentWindow = Window.GetWindow(this);
 
-            parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            if (parentWindow != null)
+            {
+                parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                parentWindow.Topmost = true;
+            }
 
+            _usersData = _currentUserData;
+            _currentStudentUser = _currentUser;
+
+            using(ApplicationContext db = new ApplicationContext())
+            {
+                var _currentStudentUserInfo = db.Users.FirstOrDefault(u => u.UserId == _currentStudentUser.UserId);
+
+                if(_currentStudentUserInfo != null)
+                {
+                    TB_CurrentUser.Text = $"Привет! {_currentStudentUser.Name} Хорошего обучения!";
+                }
+            }
         }
+
+        List<string> _usersData;
+        User _currentStudentUser;
 
         bool _isFirstClicked = false;
 
@@ -97,6 +124,44 @@ namespace School5FactoryPractice
                 parentWindow.WindowStyle = WindowStyle.None;
                 parentWindow.Topmost = true;
             }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Lbl_StudentPick.Visibility = Visibility.Collapsed;
+            StudentFrame.Visibility = Visibility.Visible;
+
+            StudentFrame.Navigate(new StudentInfo(_usersData, _currentStudentUser));
+        }
+
+        private void IMG_Logout_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Auth());
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://resh.edu.ru/",
+                UseShellExecute = true
+            });
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            Lbl_StudentPick.Visibility = Visibility.Collapsed;
+            StudentFrame.Visibility = Visibility.Visible;
+
+            StudentFrame.Navigate(new StudentHomework(_currentStudentUser));
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            Lbl_StudentPick.Visibility = Visibility.Collapsed;
+            StudentFrame.Visibility = Visibility.Visible;
+
+            StudentFrame.Navigate(new StudentGrades(_currentStudentUser));
         }
     }
 }

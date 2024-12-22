@@ -39,7 +39,11 @@ namespace School5FactoryPractice
 
             Window parentWindow = Window.GetWindow(this);
 
-            parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            if (parentWindow != null)
+            {
+                parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                parentWindow.Topmost = true;
+            }
         }
 
         private void BN_Reg_Click(object sender, RoutedEventArgs e)
@@ -56,7 +60,7 @@ namespace School5FactoryPractice
                     {
                         User _newUser = new User
                         {
-                            Name = TB_Name.Text,
+                            Name = TB_FIO.Text,
                             Email = TB_Email.Text,
                             PhoneNumber = Convert.ToInt64(TB_PhoneNumber.Text),
                             Role = "Учитель",

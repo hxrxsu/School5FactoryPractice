@@ -39,12 +39,16 @@ namespace School5FactoryPractice
 
             Window parentWindow = Window.GetWindow(this);
 
-            parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            if (parentWindow != null)
+            {
+                parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                parentWindow.Topmost = true;
+            }
         }
 
         private void BN_Reg_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(TB_Name.Text) || string.IsNullOrEmpty(TB_Email.Text) || string.IsNullOrEmpty(TB_PhoneNumber.Text) || string.IsNullOrEmpty(TB_Login.Text) || string.IsNullOrEmpty(TB_Pass.Text))
+            if (string.IsNullOrEmpty(TB_FIO.Text) || string.IsNullOrEmpty(TB_Email.Text) || string.IsNullOrEmpty(TB_PhoneNumber.Text) || string.IsNullOrEmpty(TB_Login.Text) || string.IsNullOrEmpty(TB_Pass.Text))
             {
                 MessageBox.Show("Заполните все поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -56,7 +60,7 @@ namespace School5FactoryPractice
                     {
                         User _newUser = new User
                         {
-                            Name = TB_Name.Text,
+                            Name = TB_FIO.Text,
                             Email = TB_Email.Text,
                             PhoneNumber = Convert.ToInt64(TB_PhoneNumber.Text),
                             Role = "Ученик",
@@ -109,7 +113,7 @@ namespace School5FactoryPractice
 
         private void TB_Name_GotFocus(object sender, RoutedEventArgs e)
         {
-            TB_Name.Text = "";
+            TB_FIO.Text = "";
         }
 
         private void TB_FIO_GotFocus(object sender, RoutedEventArgs e)

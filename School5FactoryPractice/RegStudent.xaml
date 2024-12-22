@@ -38,7 +38,6 @@
                     <Button x:Name="BN_Reg" Visibility="Visible" Content="Зарегистрироваться" Background="#FF272628" Foreground="White" Grid.ColumnSpan="2" Click="BN_Reg_Click"/>
                 </Grid>
                 <TextBox x:Name="TB_Pass" Grid.Row="4" TextWrapping="Wrap" Text="Пароль" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Visible" GotFocus="TB_Pass_GotFocus"/>
-                <TextBox x:Name="TB_Name" Grid.Row="0" TextWrapping="Wrap" Text="ФИО" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Visible" GotFocus="TB_Name_GotFocus"/>
                 <TextBox x:Name="TB_FIO" Grid.Row="0" TextWrapping="Wrap" Text="ФИО" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Visible" GotFocus="TB_FIO_GotFocus"/>
                 <TextBox x:Name="TB_Email" Grid.Row="1" TextWrapping="Wrap" Text="Электронная почта" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Visible" GotFocus="TB_Email_GotFocus"/>
                 <TextBox x:Name="TB_PhoneNumber" Grid.Row="2" TextWrapping="Wrap" Text="Номер телефона" Background="#FF272628" Foreground="White" VerticalContentAlignment="Center" Visibility="Visible" GotFocus="TB_PhoneNumber_GotFocus"/>

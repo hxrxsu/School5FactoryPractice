@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace School5FactoryPractice
 {
     /// <summary>
-    /// Interaction logic for StudentInfo.xaml
+    /// Interaction logic for TeacherInfo.xaml
     /// </summary>
-    public partial class StudentInfo : Page
+    public partial class TeacherInfo : Page
     {
-        public StudentInfo(List<string> _currentUserData, User _currentUser)
+        public TeacherInfo(List<string> _currentUsersData, User _currentUser)
         {
             InitializeComponent();
 
@@ -55,7 +55,7 @@ namespace School5FactoryPractice
                     MessageBox.Show("Данные изменены успешно!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex) { MessageBox.Show("Попробуйте ввести номер телефона в корректном формате! 80000000000", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error); }
-     
+
             }
         }
     }

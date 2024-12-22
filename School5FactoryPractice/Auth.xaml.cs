@@ -35,7 +35,11 @@ namespace School5FactoryPractice
 
             Window parentWindow = Window.GetWindow(this);
 
-            parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            if (parentWindow != null)
+            {
+                parentWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                parentWindow.Topmost = true;
+            }
         }
 
         List<string> _currentUsersData;
@@ -97,12 +101,14 @@ namespace School5FactoryPractice
                     {
                         var _currentUser = db.Users.FirstOrDefault(u => u.Login == TB_Login.Text && u.Password == TB_Pass.Text);
 
-                        //var _usersList = db.Users.ToList();
+                        _currentUsersData = new List<string>();
 
-                        //foreach (var _user in _usersList)
-                        //{
-                        //    _currentUsersData.Add($"{_user.UserId} {_user.Name} {_user.Role}");
-                        //}
+                        var _usersList = db.Users.ToList();
+
+                        foreach (var _user in _usersList)
+                        {
+                            _currentUsersData.Add($"{_user.UserId} {_user.Name} {_user.Role}");
+                        }
 
 
 
@@ -110,17 +116,18 @@ namespace School5FactoryPractice
                         {
                             if (_currentUser.Role == "Учитель")
                             {
-                                NavigationService.Navigate(new MainTeacherPage());
+                                NavigationService.Navigate(new MainTeacherPage(_currentUsersData, _currentUser));
 
                                 MessageBox.Show("Вы вошли!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                             }
-                            else if(_currentUser.Role == "Ученик")
+                            else if (_currentUser.Role == "Ученик")
                             {
-                                NavigationService.Navigate(new MainStudentPage());
+                                NavigationService.Navigate(new MainStudentPage(_currentUsersData, _currentUser));
+
 
                                 MessageBox.Show("Вы вошли!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                            }        
-                            else if(_currentUser.Role == "Администратор")
+                            }
+                            else if (_currentUser.Role == "Администратор")
                             {
                                 NavigationService.Navigate(new MainAdminPage());
 
@@ -133,9 +140,10 @@ namespace School5FactoryPractice
                         }
                     }
                 }
-                catch(Exception ex) { }
+                catch(Exception ex) { MessageBox.Show($"{ex}"); }
             }
 
         }
     }
 }
+    
